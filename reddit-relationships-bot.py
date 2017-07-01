@@ -79,8 +79,8 @@ def analyse_comment(comment):
 
 
 
-print "Analysing for cliches..."
-submissions = subreddit.hot(limit=10)
+print "Analysing %d submissions for cliches..." % (SETTINGS["SUBMISSIONS_TO_ANALYSE"])
+submissions = subreddit.hot(limit=SETTINGS["SUBMISSIONS_TO_ANALYSE"])
 comments_analysed = 0
 
 for submission in submissions:
