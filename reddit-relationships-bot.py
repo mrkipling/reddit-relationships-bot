@@ -74,7 +74,7 @@ def display_cliche_counts():
 def analyse_comment(comment):
     for cliche in cliches:
         for spelling in cliche['spellings']:
-            if spelling in comment.body.lower():
+            if hasattr(comment, 'body') and spelling in comment.body.lower():
                 cliche['comments'].append(comment.id)
 
 
