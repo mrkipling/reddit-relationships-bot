@@ -1,3 +1,4 @@
+import os
 import praw
 from settings import SETTINGS
 
@@ -25,7 +26,7 @@ cliches = [
     },
     {
         "advice": "Grey rock",
-        "spellings": ["grey rock", "grey-rock"],
+        "spellings": ["grey rock", "grey-rock", "gray rock", "gray-rock"],
         "comments": [],
     },
     {
@@ -66,7 +67,10 @@ cliches = [
 ]
 
 
-def display_cliche_counts():
+def display_information():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print "Analysing %d submissions for cliches" % (SETTINGS["SUBMISSIONS_TO_ANALYSE"])
+    print "Analysed %d comments from %s submissions\n" % (comments_analysed, submissions_analysed + 1)
     for cliche in cliches:
         print "%s: %s" % (cliche['advice'], len(cliche['comments']))
 
@@ -78,15 +82,16 @@ def analyse_comment(comment):
                 cliche['comments'].append(comment.id)
 
 
-
-print "Analysing %d submissions for cliches..." % (SETTINGS["SUBMISSIONS_TO_ANALYSE"])
 submissions = subreddit.hot(limit=SETTINGS["SUBMISSIONS_TO_ANALYSE"])
+submissions_analysed = 0
 comments_analysed = 0
 
 for submission in submissions:
     for comment in submission.comments.list():
         analyse_comment(comment)
         comments_analysed += 1
+        display_information()
 
-print "Analysed %d comments\n" % (comments_analysed)
-display_cliche_counts()
+    submissions_analysed += 1
+
+print "\nComplete."
