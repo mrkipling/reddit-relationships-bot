@@ -69,6 +69,11 @@ cliches = [
         "spellings": ["hit the gym", "go the the gym", "going to the gym"],
         "comments": [],
     },
+    {
+        "advice": "Narcissist",
+        "spellings": ["narcissist", "narcisist", "narcissism", "narcisism"],
+        "comments": [],
+    },
 ]
 
 
